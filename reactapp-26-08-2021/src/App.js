@@ -24,17 +24,40 @@ const App = () => {
         setTodos(newTodos);
     }
 
+    const completeItem = (idx) => {
+        // setTodos(
+        //     todos.map((todo) =>
+        //       todo.id === idx ? { ...todo, isDone: !todo.isDone } : todo
+        //     )
+        //   );
+        const todosItems = [...todos]
+        const el = todosItems[idx] 
+        if(el.isDone) {
+            el.isDone = false
+        }
+        else {
+            el.isDone = true
+        }
+        todosItems[idx] = el
+        setTodos(todosItems)
+
+    }
+
     const addItem = (message) => {
-
-        const mytodo = [...todos, { msg: message, isDone: false }];
-
-        setTodos(mytodo);
+        if(message === "") {
+            alert("You must write something!")
+            console.log("Empty")
+        }
+        else {
+            const mytodo = [...todos, { msg: message, isDone: false }];
+            setTodos(mytodo);
+        }
     }
 
     return (
         <>
             <Header getMsg={addItem} />
-            <TodoList todos={todos} deleteItem={deleteItem} />
+            <TodoList todos={todos} completeItem={completeItem} deleteItem={deleteItem} />
         </>
     );
 }

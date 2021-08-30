@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 const AddItem = (props) => {
-    const [item, setItem] = useState();
+    const [item, setItem] = useState('');
     
 
     const getInputValue = () => {
